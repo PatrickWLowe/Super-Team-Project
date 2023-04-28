@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
+  border: solid;
+  border-color: rgb(20, 33, 220);
+  background-image: linear-gradient(to bottom right, rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
+  text-decoration: solid;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px rgb(36, 35, 35);
+  margin-bottom: 30px;
+  margin: 10px;
+}
+
+#dailytotal {
+  float: right;
+  width: 60%;
+  height: fit-content;
+  padding: 10px;
+  margin: 10px;
+  margin-right: 5%;
+  border-radius: 10px;
+  border: solid;
+  border-color: rgb(20, 33, 220);
+  background-image: linear-gradient(to bottom right, rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
+  text-decoration: solid;
+  box-shadow: 10px 5px 5px rgb(36, 35, 35);
+}
+
+#search-container {
+  float: left;
+  width: 25%;
+  height: fit-content;
+  border-radius: 10px;
+  border: solid;
+  border-color: rgb(20, 33, 220);
+  background-image: linear-gradient(to bottom right, rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
+  text-decoration: solid;
+  box-shadow: 10px 5px 5px rgb(36, 35, 35);
+  margin-left: 10px;
+}
+
+#card-container {
+  float: right;
+  width: 60%;
+  height: fit-content;
+  padding: 10px;
+  margin-right: 5%;
+  border-radius: 10px;
+  border: solid;
+  border-color: rgb(20, 33, 220);
+  background-image: linear-gradient(to bottom right, rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
+  text-decoration: solid;
+  box-shadow: 10px 5px 5px rgb(36, 35, 35);
+}
