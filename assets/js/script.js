@@ -24,4 +24,4 @@ function getCorrectNutritionRatios(){
 }
 
 //
-getFoodItemFromAPI()
+getFoodItemFromAPI(foodName)
