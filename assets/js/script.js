@@ -1,16 +1,13 @@
 //TODO: add variables for each element we want to change
-const NUMBEROFSEARCHRESULTS = 5
-
 var searchResult = document.querySelector(".foodlist")
-
-var searchResultList = [];
-
+var cardArea = document.querySelector("#card-container")
 //global vars
 apiKeyUSDA = "s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
 var apiUrlUSDA_ID = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
 var apiUrlUSDA_Nutrtition =" https://api.nal.usda.gov/fdc/v1/food/"
-var foodName = "banana"
-
+var searchResultList = [];
+var cardFoodList = [];
+const NUMBEROFSEARCHRESULTS = 5
 
 /*https://api.nal.usda.gov/fdc/v1/foods/search?query=%22cheddar%20cheese%22&api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX
 */
@@ -25,9 +22,9 @@ async function getFoodItemFromAPI(foodName){
 
 
 //TODO: Now that we have the data, what do we want to do with it? We can 
-///* https://api.nal.usda.gov/fdc/v1/food/######?api_key=DEMO_KEY*/
+///* https://api.nal.usda.gov/fdc/v1/food/######?api_key=DEMO_KEY  */
 //Function that takes in a valid fdcID
-//and then returns the full unmodified JSON 
+//and then returns the full unmodified JSON
 //api response from the USDA api
 async function getFoodNutritionalDataFromAPI(fdcID){
     return fetch(apiUrlUSDA_Nutrtition + fdcID + "?api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX")
@@ -44,6 +41,7 @@ function renderSearchResult(){
         li.setAttribute("data-index", i);
     
         var button = document.createElement("button");
+        button.className="btn btn-primary"
         button.textContent = "Log 🪵";
 
         li.appendChild(button);
@@ -51,23 +49,65 @@ function renderSearchResult(){
       }
 }
 
+function renderCards(){
+    for (var i = 0; i < cardFoodList.length; i++) {
+        var name =  cardFoodList[i].description
+
+        /*<div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Nutritional Value:</h5>
+          <h6 class="card-subtitle mb-2 text-muted"></h6>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
+            voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
+            obcaecati
+            accusamus error voluptates doloribus repudiandae.</p>
+        </div>
+      </div> */
+
+        var card = document.createElement("div");
+        card.setAttribute("data-index", i);
+        card.className="card";
+        
+        var cardbody = document.createElement("div");
+        cardbody.className="card-body";
+        card.appendChild(cardbody);
+
+        var h5 = document.createElement("h5");
+        h5.className="card-title";
+        h5.textContent = name;
+        cardbody.appendChild(h5)
+
+        var h6 = document.createElement("h6") ;
+        h6.className="card-subtitle mb-2 text-muted";
+        cardbody.appendChild(h6)
+
+        var p = document.createElement("p") 
+        p.className="card-text"
+        cardbody.appendChild(p)
+
+        var button = document.createElement("button");
+        button.className="btn btn-primary"
+        button.textContent = "Remove ❌";
+        cardbody.appendChild(button)
+
+        cardArea.appendChild(card);
+      }
+}
 /* This function gets the nutrition response JSON from the USDA api for the given food input */
 async function getFoodNutritionFromAPI(foodName){
     const json = await getFoodItemFromAPI(foodName); 
     console.log("json data")
     console.log(json)
-
+    searchResultList = [];
     for (var i = 0; i < NUMBEROFSEARCHRESULTS; i++){
         searchResultList.push(json.foods[i])
     }
-
+    
     renderSearchResult();
     //storeSearchResult();
     fdcID = json.foods[0].fdcId
     const nutritionalJson = await getFoodNutritionalDataFromAPI(fdcID);
     return nutritionalJson
-
-
 }
 
 
@@ -77,13 +117,8 @@ function parseUserInput(){
 
 }
 
-//
-
-
 document.getElementById("search-form").addEventListener("submit", async function(e) {
     e.preventDefault();
-    
-
     var searchText = document.getElementById("search-input").value.trim();
     var array = searchText.split(' ')
     console.log(array)
@@ -94,10 +129,19 @@ document.getElementById("search-form").addEventListener("submit", async function
     if (searchText === "") {
       return;
     }
-
     const response = await getFoodNutritionFromAPI(searchText)
     console.log(response)
-
-
-
 });
+
+
+
+searchResult.addEventListener("click", function(event) {
+  
+    // Checks if element is a button
+    if (event.target.matches("button") === true) {
+        // Get its data-index value and remove the todo element from the list
+        var index = event.target.parentElement.getAttribute("data-index");
+        cardFoodList.push(searchResultList[index])
+        renderCards();
+    }
+  });
