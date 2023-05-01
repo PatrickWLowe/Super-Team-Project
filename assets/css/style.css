@@ -2,6 +2,57 @@
   box-sizing: border-box;
 }
 
+body {
+  background-image: linear-gradient(to bottom right, rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
+}
+
+ul li {
+  border: solid;
+  border-color: rgb(20, 33, 220);;
+  border-radius: 5px;
+  background-image: linear-gradient(to top right, rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
+  padding: 5px;
+  margin: 3px;
+  color: white;
+}
+ul li button {
+  margin-top: 5px;
+  background-color: initial;
+  background-image: linear-gradient(-180deg,  rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial,sans-serif;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 100%;
+  z-index: 9;
+  border: 0;
+  transition: box-shadow .2s;
+}
+
+ul li button:hover {
+  box-shadow: rgb(223, 220, 9) 0 3px 8px;
+}
+
+#foodcard {
+  padding: 10px;
+  margin-right: 10px;
+}
+
 header {
   border: solid;
   border-color: rgb(20, 33, 220);
@@ -9,8 +60,8 @@ header {
   text-decoration: solid;
   border-radius: 10px;
   box-shadow: 10px 5px 5px rgb(36, 35, 35);
-  margin-bottom: 30px;
   margin: 10px;
+  margin-right: 5%;
 }
 
 #dailytotal {
@@ -38,6 +89,7 @@ header {
   background-image: linear-gradient(to bottom right, rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
   text-decoration: solid;
   box-shadow: 10px 5px 5px rgb(36, 35, 35);
+  margin-top: 10px;
   margin-left: 10px;
 }
 
