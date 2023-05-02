@@ -34,14 +34,19 @@ $(function() {
             var searchItem = searchResultList[i];
         
             var li = document.createElement("li");
-            li.textContent = searchItem.description;
             li.setAttribute("data-index", i);
-        
+
+            var div = document.createElement("div");
+            div.setAttribute("style", "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;") 
+            div.setAttribute("title", searchItem.description)
+            div.textContent = searchItem.description;
+            li.appendChild(div);
+
             var button = document.createElement("button");
             button.className="btn btn-primary"
             button.textContent = "Log 🪵";
-
             li.appendChild(button);
+            
             searchResult.appendChild(li);
         }
     }
@@ -92,8 +97,9 @@ function renderCards(){
             img.className="card-img-top";
             img.setAttribute("src", imageList[i])
             img.setAttribute("alt", name)
+            img.setAttribute("style", "width: 100%;  max-height: 250px; object-fit: cover;") 
             card.appendChild(img)
-      
+            
             
             var cardbody = document.createElement("div");
             cardbody.className="card-body";
@@ -102,6 +108,8 @@ function renderCards(){
             var h5 = document.createElement("h5");
             h5.className="card-title";
             h5.textContent = name;
+            h5.setAttribute("style", "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;") 
+            h5.setAttribute("title", name)
             cardbody.appendChild(h5)
 
             var h6 = document.createElement("h6") ;
@@ -109,7 +117,7 @@ function renderCards(){
             cardbody.appendChild(h6)
 
             var p = document.createElement("p") 
-            p.textContent = calories;
+            p.textContent = "Calories: " + calories;
             p.className="card-text"
             cardbody.appendChild(p)
 
@@ -151,14 +159,13 @@ async function getFoodNutritionFromAPI(foodName){
             }),
         }).then(response => response.json()).then(result => {
             console.log(result)
-            $("#nutritional-card").empty().prepend(`
-            <div class="pexel-img">
-                <img src="${result.photos[0].src.original}" height="300" width="300"/>
+            $("#search-image").empty().prepend(`
+            <div>
+                <img class="pexel-img" src="${result.photos[0].src.original}" style="width: 100%;  max-height: 250px; object-fit: cover;"/>
                 <a href="https://www.pexels.com">Photos provided by Pexels</a>
             </div>
             `)
 
-          imageList.push(result.photos[0].src.original)
         })
     }
 
@@ -193,6 +200,7 @@ async function getFoodNutritionFromAPI(foodName){
             // Get its data-index value and remove the todo element from the list
             var index = event.target.parentElement.getAttribute("data-index");
             cardFoodList.push(searchResultList[index])
+            imageList.push(document.querySelector(".pexel-img").getAttribute("src"));
             renderCards();
         }
     });
