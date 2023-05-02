@@ -1,15 +1,25 @@
-$(function() {
-    //TODO: add variables for each element we want to change
-    var searchResult = document.querySelector(".foodlist")
-    var cardArea = document.querySelector("#card-display")
-    //global vars
-    apiKeyUSDA = "s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
-    var apiUrlUSDA_ID = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
-    var apiUrlUSDA_Nutrtition =" https://api.nal.usda.gov/fdc/v1/food/"
-    var searchResultList = [];
-    var cardFoodList = [];
-    const NUMBEROFSEARCHRESULTS = 5;
-    var imageList= [];
+//TODO: add variables for each element we want to change
+var searchResult = document.querySelector(".foodlist")
+var cardArea = document.querySelector("#card-display")
+//global vars
+apiKeyUSDA = "s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
+var apiUrlUSDA_ID = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
+var apiUrlUSDA_Nutrtition =" https://api.nal.usda.gov/fdc/v1/food/"
+const NUMBEROFSEARCHRESULTS = 5;
+
+var searchResultList = [];
+
+var userMeasurement = [];
+if (JSON.parse(localStorage.getItem('userMeasurement'))!== null){
+    userMeasurement = JSON.parse(localStorage.getItem('userMeasurement'));}
+
+var cardFoodList = [];
+if (JSON.parse(localStorage.getItem('cardFoodList'))!== null){
+    cardFoodList = JSON.parse(localStorage.getItem('cardFoodList'));}
+var imageList= [];
+if (JSON.parse(localStorage.getItem('imageList'))!== null){
+    imageList = JSON.parse(localStorage.getItem('imageList'));}
+renderCards();
 
     /*https://api.nal.usda.gov/fdc/v1/foods/search?query=%22cheddar%20cheese%22&api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX
     */
@@ -65,10 +75,10 @@ function renderCards(){
             for (var j = 0; j < listLength; j++){
               if (nutrientsList[j].nutrientName === "Energy"){
                 if(nutrientsList[j].unitName === "KCAL"){
-                  calories = cardFoodList[i].foodNutrients[j].nutrientNumber;
+                  calories = cardFoodList[i].foodNutrients[j].value;
                 }
                 else{
-                  calories = Math.round(cardFoodList[i].foodNutrients[j].nutrientNumber *  4.184);
+                  calories = Math.round(cardFoodList[i].foodNutrients[j].value *  4.184);
                 }
               }
             }
@@ -201,7 +211,11 @@ async function getFoodNutritionFromAPI(foodName){
             var index = event.target.parentElement.getAttribute("data-index");
             cardFoodList.push(searchResultList[index])
             imageList.push(document.querySelector(".pexel-img").getAttribute("src"));
+            userMeasurement.push(document.getElementById("search-input").value.trim().split(' ')[0].match(/\d+/));
+            localStorage.setItem('imageList', JSON.stringify(imageList));
+            localStorage.setItem('cardFoodList', JSON.stringify(cardFoodList));
+            localStorage.setItem('userMeasurement', JSON.stringify(userMeasurement));
             renderCards();
         }
-    });
 });
+

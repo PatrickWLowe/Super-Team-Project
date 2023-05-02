@@ -1,36 +1,44 @@
 :root {
-  --gradient-color: linear-gradient(to bottom right, rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
-  --border-color: rgb(20, 33, 220);
-  --box-shadow:rgb(36, 35, 35);
+  --gradient-color:linear-gradient(341deg, #0093E9 0%, #9ae9f7 100%);
+  --section-color: rgb(169, 238, 255);
+  --light-section:rgb(225, 249, 255);
+  --border-color: rgba(23, 35, 196, 0.418);
+  --box-shadow:rgb(20, 45, 51);
   --box-shadow-hover:rgb(223, 220, 9);
 }
 
 * {
   box-sizing: border-box;
+  
+}
+
+.navbar-custom {
+  background-color: var(--section-color);
 }
 
 body {
   background-image: var(--gradient-color);
+  height:99vh;
 }
 
 .foodlist li {
   border: solid;
-  border-color: rgb(20, 33, 220);
+  border-color: var(--border-color);
   border-radius: 5px;
-  background-image: var(--gradient-color);
-  padding: 0px;
+  background-color:var(--section-color);
+  padding: 5px;
   margin: 3px;
-  color: white;
-  text-decoration: underline;
 }
 
+img{
+  border: 2px solid var(--border-color);
+  border-radius: 1px;
+}
 .foodlist li button {
   margin-top: 5px;
-  background-color: initial;
-  background-image: var(--gradient-color);
   border-radius: 6px;
-  box-shadow:10px 5px 5px var(--box-shadow);
-  color: #FFFFFF;
+  background-color: #0093E9;
+  background-image: linear-gradient(341deg, #0093E9 0%, #80D0C7 100%);
   cursor: pointer;
   display: inline-block;
   font-family: Arial, sans-serif;
@@ -38,7 +46,7 @@ body {
   line-height: 40px;
   outline: 0;
   overflow: hidden;
-  padding: 0 20px;
+  padding: 0px;
   pointer-events: auto;
   position: relative;
   text-align: center;
@@ -50,7 +58,6 @@ body {
   width: 100%;
   z-index: 9;
   border: 0;
-  transition: box-shadow .2s;
 }
 
 ul li button:hover {
@@ -65,7 +72,7 @@ ul li button:hover {
 header {
   border: solid;
   border-color: var(--border-color);
-  background-image: var(--gradient-color);
+  background-color: var(--section-color);
   text-decoration: solid;
   border-radius: 10px;
   box-shadow: 10px 5px 5px  var(--box-shadow);
@@ -83,7 +90,7 @@ header {
   border-radius: 10px;
   border: solid;
   border-color: var(--border-color);
-  background-image: var(--gradient-color);
+  background-color: var(--section-color);
   text-decoration: solid;
   box-shadow:  10px 5px 5px var(--box-shadow);
 }
@@ -95,7 +102,7 @@ header {
   border-radius: 10px;
   border: solid;
   border-color: var(--border-color);
-  background-image: var(--gradient-color);
+  background-color: var(--section-color);
   text-decoration: solid;
   box-shadow: 10px 5px 5px  var(--box-shadow);
   margin-top: 10px;
@@ -111,26 +118,16 @@ header {
   border-radius:10px;
   border: solid;
   border-color: var(--border-color);
-  background-image: var(--gradient-color);
+  background-color: var(--section-color);
   text-decoration: solid;
   box-shadow:  10px 5px 5px  var(--box-shadow);
   margin-top: 10px;
   margin-left: 10px;
   }
-  
-#card-container {
-  float: right;
-  width: 60%;
-  height: fit-content;
-  padding: 10px;
-  margin-right: 5%;
-  border-radius: 10px;
-  border: solid;
-  border-color: var(--border-color);
-  background-image: var(--gradient-color);
-  text-decoration: solid;
-  box-shadow:  10px 5px 5px  var(--box-shadow);
-  }
+
+.card{
+  background-color: var( --light-section);
+}
   
 .pexel-img {
   display:flex;
