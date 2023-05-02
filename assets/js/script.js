@@ -8,7 +8,8 @@ $(function() {
     var apiUrlUSDA_Nutrtition =" https://api.nal.usda.gov/fdc/v1/food/"
     var searchResultList = [];
     var cardFoodList = [];
-    const NUMBEROFSEARCHRESULTS = 5
+    const NUMBEROFSEARCHRESULTS = 5;
+    var imageList= [];
 
     /*https://api.nal.usda.gov/fdc/v1/foods/search?query=%22cheddar%20cheese%22&api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX
     */
@@ -87,6 +88,13 @@ function renderCards(){
             card.className="card";
             cardColumn.appendChild(card);
             
+            var img = document.createElement("img");
+            img.className="card-img-top";
+            img.setAttribute("src", imageList[i])
+            img.setAttribute("alt", name)
+            card.appendChild(img)
+      
+            
             var cardbody = document.createElement("div");
             cardbody.className="card-body";
             card.appendChild(cardbody);
@@ -135,7 +143,7 @@ async function getFoodNutritionFromAPI(foodName){
 
     async function getFoodImage(foodName) {
         const pexelApiKey = "btswoiW3mp5wsoSHAYVfvUWbUsOJheXW6CkbbYMmv9XVfxUm47vIor6N"
-        const url = "https://api.pexels.com/v1/search?page=1&query=" + foodName
+        const url = "https://api.pexels.com/v1/search?page=1&query=" + foodName + " food"
 
         fetch(url, {
             headers: new Headers({
@@ -149,6 +157,8 @@ async function getFoodNutritionFromAPI(foodName){
                 <a href="https://www.pexels.com">Photos provided by Pexels</a>
             </div>
             `)
+
+          imageList.push(result.photos[0].src.original)
         })
     }
 
