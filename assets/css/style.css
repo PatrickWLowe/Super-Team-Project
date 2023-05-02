@@ -15,7 +15,6 @@ body {
   margin: 3px;
   color: white;
   text-decoration: underline;
-  font
 }
 
 .foodlist li button {
@@ -108,4 +107,9 @@ header {
   background-image: linear-gradient(to bottom right, rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
   text-decoration: solid;
   box-shadow: 10px 5px 5px rgb(36, 35, 35);
+}
+
+.pexel-img {
+  display:flex;
+  flex-direction: column;
 }
