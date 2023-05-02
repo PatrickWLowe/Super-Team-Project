@@ -1,6 +1,6 @@
 //TODO: add variables for each element we want to change
 var searchResult = document.querySelector(".foodlist")
-var cardArea = document.querySelector("#card-container")
+var cardArea = document.querySelector("#card-display")
 //global vars
 apiKeyUSDA = "s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
 var apiUrlUSDA_ID = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
@@ -53,20 +53,26 @@ function renderCards(){
     for (var i = 0; i < cardFoodList.length; i++) {
         var name =  cardFoodList[i].description
 
-        /*<div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Nutritional Value:</h5>
-          <h6 class="card-subtitle mb-2 text-muted"></h6>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
-            voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
-            obcaecati
-            accusamus error voluptates doloribus repudiandae.</p>
-        </div>
-      </div> */
+        /*
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nutritional Value:</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
+                voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
+                obcaecati
+                accusamus error voluptates doloribus repudiandae.</p>
+            </div>
+          </div>
+        </div> */
+        var cardColumn = document.createElement("div");
+        cardColumn.className="col-md-6";
 
         var card = document.createElement("div");
         card.setAttribute("data-index", i);
         card.className="card";
+        cardColumn.appendChild(card);
         
         var cardbody = document.createElement("div");
         cardbody.className="card-body";
@@ -90,7 +96,7 @@ function renderCards(){
         button.textContent = "Remove ❌";
         cardbody.appendChild(button)
 
-        cardArea.appendChild(card);
+        cardArea.appendChild(cardColumn);
       }
 }
 /* This function gets the nutrition response JSON from the USDA api for the given food input */
@@ -136,7 +142,8 @@ document.getElementById("search-form").addEventListener("submit", async function
 
 
 searchResult.addEventListener("click", function(event) {
-  
+    event.preventDefault();
+    event.stopPropagation()
     // Checks if element is a button
     if (event.target.matches("button") === true) {
         // Get its data-index value and remove the todo element from the list
