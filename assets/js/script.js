@@ -61,20 +61,6 @@ function renderCards(){
         calories = -1;
         var listLength = cardFoodList[i].foodNutrients.length
         var nutrientsList = cardFoodList[i].foodNutrients
-
-        for (var j = 0; j < listLength; j++){
-          if (nutrientsList[j].nutrientName === "Energy"){
-            if(nutrientsList[j].unitName === "KCAL"){
-              calories = cardFoodList[i].foodNutrients[j].nutrientNumber;
-            }
-            else{
-              calories = Math.round(cardFoodList[i].foodNutrients[j].nutrientNumber *  4.184);
-            }
-          }
-          
-        }
-
-
             for (var j = 0; j < listLength; j++){
               if (nutrientsList[j].nutrientName === "Energy"){
                 if(nutrientsList[j].unitName === "KCAL"){
@@ -130,7 +116,7 @@ function renderCards(){
 
         cardArea.appendChild(cardColumn);
       }
-}
+}}
 /* This function gets the nutrition response JSON from the USDA api for the given food input */
 async function getFoodNutritionFromAPI(foodName){
     const json = await getFoodItemFromAPI(foodName); 
@@ -204,4 +190,4 @@ async function getFoodNutritionFromAPI(foodName){
             renderCards();
         }
     });
-});
+}
