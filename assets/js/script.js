@@ -190,4 +190,4 @@ async function getFoodNutritionFromAPI(foodName){
             renderCards();
         }
     });
-}
+});
