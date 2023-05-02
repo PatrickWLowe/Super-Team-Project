@@ -75,6 +75,15 @@ function renderCards(){
         }
 
 
+            for (var j = 0; j < listLength; j++){
+              if (nutrientsList[j].nutrientName === "Energy"){
+                if(nutrientsList[j].unitName === "KCAL"){
+                  calories = cardFoodList[i].foodNutrients[j].nutrientNumber;
+                }
+                else{
+                  calories = Math.round(cardFoodList[i].foodNutrients[j].nutrientNumber *  4.184);
+                }
+              }
             /*
             <div class="col-md-6">
             <div class="card">
