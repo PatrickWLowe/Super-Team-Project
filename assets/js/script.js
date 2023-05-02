@@ -100,10 +100,10 @@ function renderCards(){
             h6.className="card-subtitle mb-2 text-muted";
             cardbody.appendChild(h6)
 
-        var p = document.createElement("p") 
-        p.textContent = calories;
-        p.className="card-text"
-        cardbody.appendChild(p)
+            var p = document.createElement("p") 
+            p.textContent = calories;
+            p.className="card-text"
+            cardbody.appendChild(p)
 
             var button = document.createElement("button");
             button.className="btn btn-primary"
