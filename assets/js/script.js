@@ -52,8 +52,28 @@ function renderSearchResult(){
 
 function renderCards(){
     cardArea.innerHTML = "";
+    console.log("HELLO")
+    console.log(cardFoodList[0].foodNutrients.length)
     for (var i = 0; i < cardFoodList.length; i++) {
         var name =  cardFoodList[i].description
+
+        //get calories for each food
+        calories = -1;
+        var listLength = cardFoodList[i].foodNutrients.length
+        var nutrientsList = cardFoodList[i].foodNutrients
+
+        for (var j = 0; j < listLength; j++){
+          if (nutrientsList[j].nutrientName === "Energy"){
+            if(nutrientsList[j].unitName === "KCAL"){
+              calories = cardFoodList[i].foodNutrients[j].nutrientNumber;
+            }
+            else{
+              calories = Math.round(cardFoodList[i].foodNutrients[j].nutrientNumber *  4.184);
+            }
+          }
+          
+        }
+
 
         /*
         <div class="col-md-6">
@@ -90,6 +110,7 @@ function renderCards(){
         cardbody.appendChild(h6)
 
         var p = document.createElement("p") 
+        p.textContent = calories;
         p.className="card-text"
         cardbody.appendChild(p)
 
@@ -113,10 +134,13 @@ async function getFoodNutritionFromAPI(foodName){
     
     renderSearchResult();
     //storeSearchResult();
+    /*
     fdcID = json.foods[0].fdcId
     const nutritionalJson = await getFoodNutritionalDataFromAPI(fdcID);
-    return nutritionalJson
+    return nutritionalJson*/
 }
+
+
 
 
 //TODO: create a function that properly adjusts the ratios depending on the 
@@ -137,15 +161,14 @@ document.getElementById("search-form").addEventListener("submit", async function
     if (searchText === "") {
       return;
     }
-    const response = await getFoodNutritionFromAPI(searchText)
-    console.log(response)
+    await getFoodNutritionFromAPI(searchText)
 });
 
 
 
 searchResult.addEventListener("click", function(event) {
     event.preventDefault();
-    event.stopPropagation()
+    event.stopPropagation();
     // Checks if element is a button
     if (event.target.matches("button") === true) {
         // Get its data-index value and remove the todo element from the list
@@ -153,4 +176,4 @@ searchResult.addEventListener("click", function(event) {
         cardFoodList.push(searchResultList[index])
         renderCards();
     }
-  });
+});
