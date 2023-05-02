@@ -11,7 +11,7 @@ body {
   border-color: rgb(20, 33, 220);;
   border-radius: 5px;
   background-image: linear-gradient(to top right, rgba(31, 12, 199, 0.295), rgba(22, 56, 151, 0.356));
-  padding: 5px;
+  padding: 0px;
   margin: 3px;
   color: white;
   text-decoration: underline;
