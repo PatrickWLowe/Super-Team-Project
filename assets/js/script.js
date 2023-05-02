@@ -53,7 +53,7 @@ function renderCards(){
         var name =  cardFoodList[i].description
 
         //get calories for each food
-        calories = -1;
+        var calories = -1;
         var listLength = cardFoodList[i].foodNutrients.length
         var nutrientsList = cardFoodList[i].foodNutrients
             for (var j = 0; j < listLength; j++){
