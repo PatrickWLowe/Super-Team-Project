@@ -80,7 +80,7 @@ function renderCards(){
         var nutrientsList = cardFoodList[i].foodNutrients
         var measurementRatio=  userMeasurement[i] /100; 
             for (var j = 0; j < listLength; j++){
-              if (nutrientsList[j].nutrientNumber === "208"){//208 is the nutrientNumber for Energy in KCAL
+              if (nutrientsList[j].nutrientNumber === "208" || nutrientsList[j].nutrientNumber === "958"){//208 is the nutrientNumber for Energy in KCAL
               
                 calories = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
               }
