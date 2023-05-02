@@ -54,7 +54,20 @@ $(function() {
         cardArea.innerHTML = "";
         for (var i = 0; i < cardFoodList.length; i++) {
             var name =  cardFoodList[i].description
+            //get calories for each food
+            calories = -1;
+            var listLength = cardFoodList[i].foodNutrients.length
+            var nutrientsList = cardFoodList[i].foodNutrients
 
+            for (var j = 0; j < listLength; j++){
+              if (nutrientsList[j].nutrientName === "Energy"){
+                if(nutrientsList[j].unitName === "KCAL"){
+                  calories = cardFoodList[i].foodNutrients[j].nutrientNumber;
+                }
+                else{
+                  calories = Math.round(cardFoodList[i].foodNutrients[j].nutrientNumber *  4.184);
+                }
+              }
             /*
             <div class="col-md-6">
             <div class="card">
@@ -91,6 +104,7 @@ $(function() {
 
             var p = document.createElement("p") 
             p.className="card-text"
+            p.textContent = calories;
             cardbody.appendChild(p)
 
             var button = document.createElement("button");
