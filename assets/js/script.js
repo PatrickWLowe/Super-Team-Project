@@ -19,36 +19,8 @@ $(function() {
         return fetch(apiUrlUSDA_ID + "&query=" + foodName)
             .then((response)=>response.json())
             .then((responseJson)=>{return responseJson});
-    }
+}
 
-    //TODO: Now that we have the data, what do we want to do with it? We can 
-    ///* https://api.nal.usda.gov/fdc/v1/food/######?api_key=DEMO_KEY  */
-    //Function that takes in a valid fdcID
-    //and then returns the full unmodified JSON
-    //api response from the USDA api
-    async function getFoodNutritionalDataFromAPI(fdcID){
-        return fetch(apiUrlUSDA_Nutrtition + fdcID + "?api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX")
-            .then((response)=>response.json())
-            .then((responseJson)=>{return responseJson});
-    }
-
-    function renderSearchResult(){
-    searchResult.innerHTML = "";
-        for (var i = 0; i < NUMBEROFSEARCHRESULTS; i++) {
-            var searchItem = searchResultList[i];
-        
-            var li = document.createElement("li");
-            li.textContent = searchItem.description;
-            li.setAttribute("data-index", i);
-        
-            var button = document.createElement("button");
-            button.className="btn btn-primary"
-            button.textContent = "Log 🪵";
-
-            li.appendChild(button);
-            searchResult.appendChild(li);
-        }
-    }
 
 function renderCards(){
     cardArea.innerHTML = "";
