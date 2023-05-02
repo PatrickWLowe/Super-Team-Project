@@ -7,19 +7,24 @@ var apiUrlUSDA_ID = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=s3qx66
 var apiUrlUSDA_Nutrtition =" https://api.nal.usda.gov/fdc/v1/food/"
 const NUMBEROFSEARCHRESULTS = 5;
 
+
 var searchResultList = [];
 
 var userMeasurement = [];
 if (JSON.parse(localStorage.getItem('userMeasurement'))!== null){
     userMeasurement = JSON.parse(localStorage.getItem('userMeasurement'));}
 
-var cardFoodList = [];
-if (JSON.parse(localStorage.getItem('cardFoodList'))!== null){
-    cardFoodList = JSON.parse(localStorage.getItem('cardFoodList'));}
+
 var imageList= [];
 if (JSON.parse(localStorage.getItem('imageList'))!== null){
     imageList = JSON.parse(localStorage.getItem('imageList'));}
-renderCards();
+var cardFoodList = [];
+if (JSON.parse(localStorage.getItem('cardFoodList'))!== null){
+    cardFoodList = JSON.parse(localStorage.getItem('cardFoodList'));
+    renderCards();
+}
+
+
 
     /*https://api.nal.usda.gov/fdc/v1/foods/search?query=%22cheddar%20cheese%22&api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX
     */
@@ -27,7 +32,7 @@ renderCards();
     //a food, and then returns the full unmodified JSON 
     //api response from the USDA api
     async function getFoodItemFromAPI(foodName){
-        return fetch(apiUrlUSDA_ID + "&query=" + foodName)
+        return fetch(apiUrlUSDA_ID + "&query=" + foodName +"&dataType=Foundation")
             .then((response)=>response.json())
             .then((responseJson)=>{return responseJson});
     }
@@ -42,6 +47,9 @@ renderCards();
     searchResult.innerHTML = "";
         for (var i = 0; i < NUMBEROFSEARCHRESULTS; i++) {
             var searchItem = searchResultList[i];
+            if (searchItem == null){
+                break;
+            }
         
             var li = document.createElement("li");
             li.setAttribute("data-index", i);
@@ -63,8 +71,6 @@ renderCards();
 
 function renderCards(){
     cardArea.innerHTML = "";
-    console.log("HELLO")
-    console.log(cardFoodList[0].foodNutrients.length)
     for (var i = 0; i < cardFoodList.length; i++) {
         var name =  cardFoodList[i].description
 
@@ -72,14 +78,11 @@ function renderCards(){
         var calories = -1;
         var listLength = cardFoodList[i].foodNutrients.length
         var nutrientsList = cardFoodList[i].foodNutrients
+        var measurementRatio=  userMeasurement[i] /100; 
             for (var j = 0; j < listLength; j++){
-              if (nutrientsList[j].nutrientName === "Energy"){
-                if(nutrientsList[j].unitName === "KCAL"){
-                  calories = cardFoodList[i].foodNutrients[j].value;
-                }
-                else{
-                  calories = Math.round(cardFoodList[i].foodNutrients[j].value *  4.184);
-                }
+              if (nutrientsList[j].nutrientNumber === "208"){//208 is the nutrientNumber for Energy in KCAL
+              
+                calories = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
               }
             }
             /*
