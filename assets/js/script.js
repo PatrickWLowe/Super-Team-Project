@@ -33,6 +33,7 @@ async function getFoodNutritionalDataFromAPI(fdcID){
 }
 
 function renderSearchResult(){
+  searchResult.innerHTML = "";
     for (var i = 0; i < NUMBEROFSEARCHRESULTS; i++) {
         var searchItem = searchResultList[i];
     
@@ -50,6 +51,7 @@ function renderSearchResult(){
 }
 
 function renderCards(){
+    cardArea.innerHTML = "";
     for (var i = 0; i < cardFoodList.length; i++) {
         var name =  cardFoodList[i].description
 
