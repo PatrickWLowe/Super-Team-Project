@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
@@ -37,129 +38,135 @@
     </div>
   </header>
 
-  <div id="search-container" class="container-fluid col-sm text-center"> 
+  <div id="search-container" class="container-fluid col-sm text-center">
     <!--search and save section-->
-  <section id="search-area-title" class="search-area">
+    <section id="search-area-title" class="search-area">
       <h2 class="search-area-title"></h2>
-        <h2> Search for food!</h2>
+      <h2> Search for food!</h2>
+    </section>
+    <form id="search-form" class="form w-100">
+
+      <!--search bar and search button-->
+      <input id="search-input" class="form-input w-100" type="text" placeholder="Search!">
+      <button class="btn searchBtn btn-info btn-block" id="fetch-button">Search</button>
+
+      <!--save button-->
+      <button class="btn saveBtn btn-info btn-block" id="save-button">Save</button>
       </section>
-  <form id="search-form" class="form w-100">
-
-    <!--search bar and search button-->
-    <input id="search-input" class="form-input w-100" type="text" placeholder="Search!">
-    <button class="btn searchBtn btn-info btn-block m-2" id="fetch-button">Search</button>
-   
-     <!--save button-->
-    <button class="btn saveBtn btn-info btn-block m-2" id="save-button">Save</button>
-  </section>
-  <ul class="foodlist"></ul>
- </div>
-
- <div id="dailytotal" class="col-lg">
-  <h2>Daily Totals:</h2>
-  <p>Calories:<span id="Calories"></span></p>
-  <p>Transfat:<span id="Transfat"></span></p> 
-  <p>Total Fat:<span id="total-fat"></span></p>
- </div>
-  
- <div id="card-container">
- <div id="foodcard" class="container-fluid col-lg pt-5">
- <div class="row">
-    
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Nutritional Value:</h5>
-          <h6 class="card-subtitle mb-2 text-muted"></h6>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
-            voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
-            obcaecati
-            accusamus error voluptates doloribus repudiandae.</p>
-        </div>
-      </div>
-    
+      <ul class="foodlist"></ul>
   </div>
- </div>
- <div id="foodcard" class="container-fluid">
-  <div class="row">
-     
-       <div class="card">
-         <div class="card-body">
-           <h5 class="card-title">Nutritional Value:</h5>
-           <h6 class="card-subtitle mb-2 text-muted"></h6>
-           <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
-             voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
-             obcaecati
-             accusamus error voluptates doloribus repudiandae.</p>
-         </div>
-       </div>
-     
-   </div>
+
+  <div id="dailytotal" class="col-lg">
+    <h2>Daily Totals:</h2>
+    <p>Calories:<span id="Calories"></span></p>
+    <p>Transfat:<span id="Transfat"></span></p>
+    <p>Total Fat:<span id="total-fat"></span></p>
   </div>
-  <div id="foodcard" class="container-fluid">
-    <div class="row">
-       
-         <div class="card">
-           <div class="card-body">
-             <h5 class="card-title">Nutritional Value:</h5>
-             <h6 class="card-subtitle mb-2 text-muted"></h6>
-             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
-               voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
-               obcaecati
-               accusamus error voluptates doloribus repudiandae.</p>
-           </div>
-         </div>
-      
-     </div>
-    </div>
-    <div id="foodcard" class="container-fluid">
+
+  <div id="card-container">
+    <div class="container-fluid col-lg pt-5">
       <div class="row">
-         
-           <div class="card">
-             <div class="card-body">
-               <h5 class="card-title">Nutritional Value:</h5>
-               <h6 class="card-subtitle mb-2 text-muted"></h6>
-               <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
-                 voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
-                 obcaecati
-                 accusamus error voluptates doloribus repudiandae.</p>
-             </div>
-           </div>
-         
-       </div>
-      </div>
-      <div id="foodcard" class="container-fluid">
-        <div class="row">
-           
-             <div class="card">
-               <div class="card-body">
-                 <h5 class="card-title">Nutritional Value:</h5>
-                 <h6 class="card-subtitle mb-2 text-muted"></h6>
-                 <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
-                   voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
-                   obcaecati
-                   accusamus error voluptates doloribus repudiandae.</p>
-               </div>
-             </div>
-           
-         </div>
-        </div>
-        <div id="foodcard" class="container-fluid">
-          <div class="row">
-             
-               <div class="card">
-                 <div class="card-body">
-                   <h5 class="card-title">Nutritional Value:</h5>
-                   <h6 class="card-subtitle mb-2 text-muted"></h6>
-                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
-                     voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
-                     obcaecati
-                     accusamus error voluptates doloribus repudiandae.</p>
-                 </div>
-               </div>
-             </div>
-           </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nutritional Value:</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
+                voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
+                obcaecati
+                accusamus error voluptates doloribus repudiandae.</p>
+            </div>
           </div>
-        
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nutritional Value:</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
+                voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
+                obcaecati
+                accusamus error voluptates doloribus repudiandae.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nutritional Value:</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
+                voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
+                obcaecati
+                accusamus error voluptates doloribus repudiandae.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nutritional Value:</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
+                voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
+                obcaecati
+                accusamus error voluptates doloribus repudiandae.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nutritional Value:</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
+                voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
+                obcaecati
+                accusamus error voluptates doloribus repudiandae.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nutritional Value:</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
+                voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
+                obcaecati
+                accusamus error voluptates doloribus repudiandae.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nutritional Value:</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
+                voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
+                obcaecati
+                accusamus error voluptates doloribus repudiandae.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nutritional Value:</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
+                voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
+                obcaecati
+                accusamus error voluptates doloribus repudiandae.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 
   <script src="./assets/js/script.js"></script>

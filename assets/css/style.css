@@ -6,19 +6,22 @@ body {
   background-image: linear-gradient(to bottom right, rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
 }
 
-ul li {
+.foodlist li {
   border: solid;
   border-color: rgb(20, 33, 220);;
   border-radius: 5px;
-  background-image: linear-gradient(to top right, rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
+  background-image: linear-gradient(to top right, rgba(31, 12, 199, 0.295), rgba(22, 56, 151, 0.356));
   padding: 5px;
   margin: 3px;
   color: white;
+  text-decoration: underline;
+  font
 }
-ul li button {
+
+.foodlist li button {
   margin-top: 5px;
   background-color: initial;
-  background-image: linear-gradient(-180deg,  rgba(21, 255, 0, 0.295), rgba(22, 56, 151, 0.356));
+  background-image: linear-gradient(to top right, rgba(21, 255, 0), rgba(22, 56, 151));
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
   color: #FFFFFF;
