@@ -82,24 +82,24 @@ function renderCards(){
             for (var j = 0; j < listLength; j++){
               if (nutrientsList[j].nutrientNumber === "208" || nutrientsList[j].nutrientNumber === "958"){//208 is the nutrientNumber for Energy in KCAL
               
-                calories = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
+                calories = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
 
               if (nutrientsList[j].nutrientNumber === "205"){//208 is the nutrientNumber for Energy in KCAL
               
-                carbs = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
+                carbs = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
               if (nutrientsList[j].nutrientNumber === "203"){//203 is the nutrientNumber for Energy in KCAL
               
-                protein = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
+                protein = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
               if (nutrientsList[j].nutrientNumber === "605"){//605 is the nutrientNumber for Energy in KCAL
               
-                transfat = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
+                transfat = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
               if (nutrientsList[j].nutrientNumber === "606"){//605 is the nutrientNumber for Energy in KCAL
               
-                saturatedfat = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
+                saturatedfat = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
             }
           
