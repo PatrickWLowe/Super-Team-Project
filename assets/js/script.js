@@ -89,15 +89,15 @@ function renderCards(){
               
                 carbs = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
-              if (nutrientsList[j].nutrientNumber === "203"){//203 is the nutrientNumber for Energy in KCAL
+              if (nutrientsList[j].nutrientNumber === "203"){//203 is the nutrientNumber for protein in grams
               
                 protein = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
-              if (nutrientsList[j].nutrientNumber === "605"){//605 is the nutrientNumber for Energy in KCAL
+              if (nutrientsList[j].nutrientNumber === "605"){//605 is the transfat for Energy in grams
               
                 transfat = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
-              if (nutrientsList[j].nutrientNumber === "606"){//605 is the nutrientNumber for Energy in KCAL
+              if (nutrientsList[j].nutrientNumber === "606"){//605 is the nutrientNumber for saturatedfat in grams
               
                 saturatedfat = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
