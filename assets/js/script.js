@@ -76,6 +76,10 @@ function renderCards(){
 
         //get calories for each food
         var calories = -1;
+        var carbs = -1;
+        var protein = -1;
+        var transfat = -1;
+        var saturatedfat = -1;
         var listLength = cardFoodList[i].foodNutrients.length
         var nutrientsList = cardFoodList[i].foodNutrients
         var measurementRatio=  userMeasurement[i] /100; 
@@ -91,7 +95,7 @@ function renderCards(){
               }
               if (nutrientsList[j].nutrientNumber === "203"){//203 is the nutrientNumber for Energy in KCAL
               
-                protien = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
+                protein = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
               }
               if (nutrientsList[j].nutrientNumber === "605"){//605 is the nutrientNumber for Energy in KCAL
               
@@ -145,7 +149,7 @@ function renderCards(){
             cardbody.appendChild(p)
 
             var p = document.createElement("p") 
-            p.textContent = "Protien: " + protien;
+            p.textContent = "Protein: " + protein;
             p.className="card-text"
             cardbody.appendChild(p)
 
