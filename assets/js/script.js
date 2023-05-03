@@ -75,11 +75,11 @@ function renderCards(){
         var name =  cardFoodList[i].description
 
         //get calories for each food
-        var calories = -1;
-        var carbs = -1;
-        var protein = -1;
-        var transfat = -1;
-        var saturatedfat = -1;
+        var calories = 0;
+        var carbs = 0;
+        var protein = 0;
+        var transfat = 0;
+        var saturatedfat = 0;
         var listLength = cardFoodList[i].foodNutrients.length
         var nutrientsList = cardFoodList[i].foodNutrients
         var measurementRatio=  userMeasurement[i] /100; 
