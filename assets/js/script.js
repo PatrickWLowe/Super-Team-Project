@@ -6,14 +6,11 @@ apiKeyUSDA = "s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
 var apiUrlUSDA_ID = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
 var apiUrlUSDA_Nutrtition =" https://api.nal.usda.gov/fdc/v1/food/"
 const NUMBEROFSEARCHRESULTS = 5;
-
-
 var searchResultList = [];
-
+localStorage.clear();
 var userMeasurement = [];
 if (JSON.parse(localStorage.getItem('userMeasurement'))!== null){
     userMeasurement = JSON.parse(localStorage.getItem('userMeasurement'));}
-
 
 var imageList= [];
 if (JSON.parse(localStorage.getItem('imageList'))!== null){
@@ -52,8 +49,7 @@ if (JSON.parse(localStorage.getItem('cardFoodList'))!== null){
             }
         
             var li = document.createElement("li");
-            li.setAttribute("data-index", i);
-
+            li.setAttribute("data-index-search",i);
             var div = document.createElement("div");
             div.setAttribute("style", "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;") 
             div.setAttribute("title", searchItem.description)
@@ -254,13 +250,17 @@ async function getFoodNutritionFromAPI(foodName){
         event.stopPropagation()
         // Checks if element is a button
         if (event.target.matches("button") === true) {
-            var index = event.target.parentElement.getAttribute("data-index");
+            var index = event.target.parentElement.getAttribute("data-index-search");
             cardFoodList.push(searchResultList[index])
             imageList.push(document.querySelector(".pexel-img").getAttribute("src"));
             userMeasurement.push(document.getElementById("search-input").value.trim().split(' ')[0].match(/\d+/));
             localStorage.setItem('imageList', JSON.stringify(imageList));
             localStorage.setItem('cardFoodList', JSON.stringify(cardFoodList));
             localStorage.setItem('userMeasurement', JSON.stringify(userMeasurement));
+            console.log(imageList)
+            console.log(cardFoodList)
+            console.log(userMeasurement)
+
             renderCards();
         }
 });
