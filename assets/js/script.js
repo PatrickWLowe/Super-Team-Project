@@ -97,7 +97,7 @@ function renderCards(){
               
                 transfat = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
-              if (nutrientsList[j].nutrientNumber === "606"){//605 is the nutrientNumber for saturatedfat in grams
+              if (nutrientsList[j].nutrientNumber === "606"){//606 is the nutrientNumber for saturatedfat in grams
               
                 saturatedfat = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
