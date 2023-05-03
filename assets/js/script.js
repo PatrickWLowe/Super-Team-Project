@@ -142,6 +142,16 @@ function renderCards(){
         cardArea.appendChild(cardColumn);
       }
 }
+cardArea.addEventListener("click", function(event) {
+    var element = event.target;
+   
+    if (element.matches("button") === true) {
+      var index = element.parentElement.getAttribute("data-index");
+      cardFoodList.splice(index, 1);
+      
+      renderCards();
+    }
+  });
 /* This function gets the nutrition response JSON from the USDA api for the given food input */
 async function getFoodNutritionFromAPI(foodName){
     const json = await getFoodItemFromAPI(foodName); 
