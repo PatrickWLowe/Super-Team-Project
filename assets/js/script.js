@@ -171,7 +171,8 @@ cardArea.addEventListener("click", function(event) {
     var element = event.target;
     event.stopPropagation()
     if (element.matches("button") === true) {
-        var index = element.parentElement.getAttribute("data-index");
+        var index = element.parentElement.parentElement.getAttribute("data-index");
+        console.log("Deleting :" + index)
         cardFoodList.splice(index, 1);
         userMeasurement.splice(index, 1);
         imageList.splice(index, 1);
