@@ -254,7 +254,6 @@ async function getFoodNutritionFromAPI(foodName){
         event.stopPropagation()
         // Checks if element is a button
         if (event.target.matches("button") === true) {
-            // Get its data-index value and remove the todo element from the list
             var index = event.target.parentElement.getAttribute("data-index");
             cardFoodList.push(searchResultList[index])
             imageList.push(document.querySelector(".pexel-img").getAttribute("src"));
