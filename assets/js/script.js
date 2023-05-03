@@ -84,20 +84,25 @@ function renderCards(){
               
                 calories = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
               }
+
+              if (nutrientsList[j].nutrientNumber === "205"){//208 is the nutrientNumber for Energy in KCAL
+              
+                carbs = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
+              }
+              if (nutrientsList[j].nutrientNumber === "203"){//203 is the nutrientNumber for Energy in KCAL
+              
+                protien = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
+              }
+              if (nutrientsList[j].nutrientNumber === "605"){//605 is the nutrientNumber for Energy in KCAL
+              
+                transfat = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
+              }
+              if (nutrientsList[j].nutrientNumber === "606"){//605 is the nutrientNumber for Energy in KCAL
+              
+                saturatedfat = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
+              }
             }
-            /*
-            <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                <h5 class="card-title">Nutritional Value:</h5>
-                <h6 class="card-subtitle mb-2 text-muted"></h6>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
-                    voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
-                    obcaecati
-                    accusamus error voluptates doloribus repudiandae.</p>
-                </div>
-            </div>
-            </div> */
+          
             var cardColumn = document.createElement("div");
             cardColumn.className="col-md-6";
 
@@ -131,6 +136,26 @@ function renderCards(){
 
             var p = document.createElement("p") 
             p.textContent = "Calories: " + calories;
+            p.className="card-text"
+            cardbody.appendChild(p)
+
+            var p = document.createElement("p") 
+            p.textContent = "Carbohydrate: " +carbs;
+            p.className="card-text"
+            cardbody.appendChild(p)
+
+            var p = document.createElement("p") 
+            p.textContent = "Protien: " + protien;
+            p.className="card-text"
+            cardbody.appendChild(p)
+
+            var p = document.createElement("p") 
+            p.textContent = "TransFat: " + transfat;
+            p.className="card-text"
+            cardbody.appendChild(p)
+
+            var p = document.createElement("p") 
+            p.textContent = "SaturatedFat: " + saturatedfat;
             p.className="card-text"
             cardbody.appendChild(p)
 
