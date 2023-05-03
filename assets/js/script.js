@@ -144,11 +144,16 @@ function renderCards(){
 }
 cardArea.addEventListener("click", function(event) {
     var element = event.target;
-   
+    event.stopPropagation()
     if (element.matches("button") === true) {
-      var index = element.parentElement.getAttribute("data-index");
-      cardFoodList.splice(index, 1);
-      
+        var index = element.parentElement.getAttribute("data-index");
+        cardFoodList.splice(index, 1);
+        userMeasurement.splice(index, 1);
+        imageList.splice(index, 1);
+        localStorage.clear();
+        localStorage.setItem('imageList', JSON.stringify(imageList));
+        localStorage.setItem('cardFoodList', JSON.stringify(cardFoodList));
+        localStorage.setItem('userMeasurement', JSON.stringify(userMeasurement));
       renderCards();
     }
   });
