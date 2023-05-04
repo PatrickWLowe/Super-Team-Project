@@ -1,6 +1,11 @@
 //TODO: add variables for each element we want to change
 var searchResult = document.querySelector(".foodlist")
 var cardArea = document.querySelector("#card-display")
+var totalsarea = document.querySelector("#totalcalories")
+var totalcarbsohydrates = document.querySelector("#totalcarbs")
+var totprotein = document.querySelector("#totprotein")
+var transfattotal = document.querySelector("#transfattotal")
+var saturatedfattotal = document.querySelector("#saturated-fat")
 //global vars
 apiKeyUSDA = "s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
 var apiUrlUSDA_ID = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
@@ -64,6 +69,93 @@ if (JSON.parse(localStorage.getItem('cardFoodList'))!== null){
             searchResult.appendChild(li);
         }
     }
+
+    function Dailytotals(){
+        totalsarea.innerHTML = "";
+        totalcarbsohydrates.innerHTML = "";
+        totprotein.innerHTML = "";
+        transfattotal.innerHTML = "";
+        saturatedfattotal.innerHTML = "";
+
+            var totalcalories = 0;
+            var totalcarbs = 0;
+            var totalprotein = 0;
+            var totaltransfat = 0;
+            var totalsaturatedfat = 0;
+
+        for (var i = 0; i < cardFoodList.length; i++) {
+            
+    
+            //get calories for each food
+            var calories = 0;
+            var carbs = 0;
+            var protein = 0;
+            var transfat = 0;
+            var saturatedfat = 0;
+            var listLength = cardFoodList[i].foodNutrients.length
+            var nutrientsList = cardFoodList[i].foodNutrients
+            var measurementRatio=  userMeasurement[i] /100; 
+                for (var j = 0; j < listLength; j++){
+                  if (nutrientsList[j].nutrientNumber === "208" || nutrientsList[j].nutrientNumber === "958"){//208 is the nutrientNumber for Energy in KCAL
+                  
+                    calories = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
+                    totalcalories = calories + totalcalories;
+                  }
+                  if (nutrientsList[j].nutrientNumber === "205"){//208 is the nutrientNumber for Energy in KCAL
+              
+                    carbs = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
+                    totalcarbs = carbs + totalcarbs;
+                  }
+                  if (nutrientsList[j].nutrientNumber === "203"){//203 is the nutrientNumber for protein in grams
+              
+                    protein = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
+                    totalprotein = protein + totalprotein;
+                  }
+                  if (nutrientsList[j].nutrientNumber === "605"){//605 is the transfat for Energy in grams
+                  
+                    transfat = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
+                    totaltransfat = transfat + totaltransfat
+                  }
+                  if (nutrientsList[j].nutrientNumber === "606"){//606 is the nutrientNumber for saturatedfat in grams
+                  
+                    saturatedfat = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
+                    totalsaturatedfat = saturatedfat + totalsaturatedfat
+                  }
+                }   
+          }
+            var cardColumn = document.createElement("div");
+            cardColumn.className="col-md-6";
+
+
+            var p = document.createElement("p") 
+            p.textContent = "Calories: " + totalcalories;
+            p.className="card-text"
+            totalsarea.appendChild(p)
+
+            var p = document.createElement("p") 
+            p.textContent = "Carbohydrate: " + totalcarbs;
+            p.className="card-text"
+            totalcarbsohydrates.appendChild(p)
+
+            var p = document.createElement("p") 
+            p.textContent = "Protein: " + totalprotein;
+            p.className="card-text"
+            totprotein.appendChild(p)
+
+            var p = document.createElement("p") 
+            p.textContent = "TransFat: " + totaltransfat;
+            p.className="card-text"
+            transfattotal.appendChild(p)
+
+            var p = document.createElement("p") 
+            p.textContent = "SaturatedFat: " + totalsaturatedfat;
+            p.className="card-text"
+            saturatedfattotal.appendChild(p)
+
+
+            totalsarea.appendChild(cardColumn);
+    }
+   
 
 function renderCards(){
     cardArea.innerHTML = "";
@@ -165,8 +257,11 @@ function renderCards(){
             cardbody.appendChild(button)
 
         cardArea.appendChild(cardColumn);
+        
       }
+      Dailytotals()
 }
+
 cardArea.addEventListener("click", function(event) {
     var element = event.target;
     event.stopPropagation()
