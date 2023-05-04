@@ -6,14 +6,11 @@ apiKeyUSDA = "s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
 var apiUrlUSDA_ID = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=s3qx66RYtQUg347PE1INNkwT7uxfU4Ht9YacRcaX"
 var apiUrlUSDA_Nutrtition =" https://api.nal.usda.gov/fdc/v1/food/"
 const NUMBEROFSEARCHRESULTS = 5;
-
-
 var searchResultList = [];
-
+localStorage.clear();
 var userMeasurement = [];
 if (JSON.parse(localStorage.getItem('userMeasurement'))!== null){
     userMeasurement = JSON.parse(localStorage.getItem('userMeasurement'));}
-
 
 var imageList= [];
 if (JSON.parse(localStorage.getItem('imageList'))!== null){
@@ -52,8 +49,7 @@ if (JSON.parse(localStorage.getItem('cardFoodList'))!== null){
             }
         
             var li = document.createElement("li");
-            li.setAttribute("data-index", i);
-
+            li.setAttribute("data-index-search",i);
             var div = document.createElement("div");
             div.setAttribute("style", "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;") 
             div.setAttribute("title", searchItem.description)
@@ -75,29 +71,38 @@ function renderCards(){
         var name =  cardFoodList[i].description
 
         //get calories for each food
-        var calories = -1;
+        var calories = 0;
+        var carbs = 0;
+        var protein = 0;
+        var transfat = 0;
+        var saturatedfat = 0;
         var listLength = cardFoodList[i].foodNutrients.length
         var nutrientsList = cardFoodList[i].foodNutrients
         var measurementRatio=  userMeasurement[i] /100; 
             for (var j = 0; j < listLength; j++){
               if (nutrientsList[j].nutrientNumber === "208" || nutrientsList[j].nutrientNumber === "958"){//208 is the nutrientNumber for Energy in KCAL
               
-                calories = cardFoodList[i].foodNutrients[j].value *measurementRatio ;
+                calories = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
+              }
+
+              if (nutrientsList[j].nutrientNumber === "205"){//208 is the nutrientNumber for Energy in KCAL
+              
+                carbs = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
+              }
+              if (nutrientsList[j].nutrientNumber === "203"){//203 is the nutrientNumber for protein in grams
+              
+                protein = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
+              }
+              if (nutrientsList[j].nutrientNumber === "605"){//605 is the transfat for Energy in grams
+              
+                transfat = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
+              }
+              if (nutrientsList[j].nutrientNumber === "606"){//606 is the nutrientNumber for saturatedfat in grams
+              
+                saturatedfat = Math.floor(cardFoodList[i].foodNutrients[j].value *measurementRatio) ;
               }
             }
-            /*
-            <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                <h5 class="card-title">Nutritional Value:</h5>
-                <h6 class="card-subtitle mb-2 text-muted"></h6>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse fugiat veniam commodi
-                    voluptatem accusamus possimus a fugit, consectetur iure doloribus? Nemo, molestias? Rerum, dignissimos
-                    obcaecati
-                    accusamus error voluptates doloribus repudiandae.</p>
-                </div>
-            </div>
-            </div> */
+          
             var cardColumn = document.createElement("div");
             cardColumn.className="col-md-6";
 
@@ -134,6 +139,26 @@ function renderCards(){
             p.className="card-text"
             cardbody.appendChild(p)
 
+            var p = document.createElement("p") 
+            p.textContent = "Carbohydrate: " +carbs;
+            p.className="card-text"
+            cardbody.appendChild(p)
+
+            var p = document.createElement("p") 
+            p.textContent = "Protein: " + protein;
+            p.className="card-text"
+            cardbody.appendChild(p)
+
+            var p = document.createElement("p") 
+            p.textContent = "TransFat: " + transfat;
+            p.className="card-text"
+            cardbody.appendChild(p)
+
+            var p = document.createElement("p") 
+            p.textContent = "SaturatedFat: " + saturatedfat;
+            p.className="card-text"
+            cardbody.appendChild(p)
+
             var button = document.createElement("button");
             button.className="btn btn-primary"
             button.textContent = "Remove ❌";
@@ -144,11 +169,17 @@ function renderCards(){
 }
 cardArea.addEventListener("click", function(event) {
     var element = event.target;
-   
+    event.stopPropagation()
     if (element.matches("button") === true) {
-      var index = element.parentElement.getAttribute("data-index");
-      cardFoodList.splice(index, 1);
-      
+        var index = element.parentElement.parentElement.getAttribute("data-index");
+        console.log("Deleting :" + index)
+        cardFoodList.splice(index, 1);
+        userMeasurement.splice(index, 1);
+        imageList.splice(index, 1);
+        localStorage.clear();
+        localStorage.setItem('imageList', JSON.stringify(imageList));
+        localStorage.setItem('cardFoodList', JSON.stringify(cardFoodList));
+        localStorage.setItem('userMeasurement', JSON.stringify(userMeasurement));
       renderCards();
     }
   });
@@ -220,15 +251,17 @@ async function getFoodNutritionFromAPI(foodName){
         event.stopPropagation()
         // Checks if element is a button
         if (event.target.matches("button") === true) {
-            // Get its data-index value and remove the todo element from the list
-            var index = event.target.parentElement.getAttribute("data-index");
+            var index = event.target.parentElement.getAttribute("data-index-search");
             cardFoodList.push(searchResultList[index])
             imageList.push(document.querySelector(".pexel-img").getAttribute("src"));
             userMeasurement.push(document.getElementById("search-input").value.trim().split(' ')[0].match(/\d+/));
             localStorage.setItem('imageList', JSON.stringify(imageList));
             localStorage.setItem('cardFoodList', JSON.stringify(cardFoodList));
             localStorage.setItem('userMeasurement', JSON.stringify(userMeasurement));
+            console.log(imageList)
+            console.log(cardFoodList)
+            console.log(userMeasurement)
+
             renderCards();
         }
 });
-
