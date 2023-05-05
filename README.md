@@ -16,6 +16,7 @@
 * GitBash
 * Web-API'sstatus
 * JQuery
+* Bootstrap
 #
 ## Description
 #### This is going to be an app that tracks your daily nutritional intake.
