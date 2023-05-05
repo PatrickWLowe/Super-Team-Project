@@ -1,11 +1,11 @@
 
 # You Are What You Eat
 ## Developers
-#### Evan Carlson
-#### Patrick Lowe
-#### Karelyn Rojas
-#### Nicolas Coiner
-#### Gabreila Avelas
+#### [Evan Carlson](https://github.com/EvanRC)
+#### [Patrick Lowe](https://github.com/PatrickWLowe)
+#### [Karelyn Rojas](https://github.com/i-kare)
+#### [Nicolas Coiner](https://github.com/npcoiner)
+#### [Gabreila Avelas](https://github.com/GabySSK)
 #
 ## Technologies Used
 
@@ -14,7 +14,7 @@
 * CSS
 * Visual Studio Code
 * GitBash
-* Web-API's
+* Web-API'sstatus
 * JQuery
 #
 ## Description
