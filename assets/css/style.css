@@ -21,6 +21,11 @@ body {
   height:99vh;
 }
 
+
+#main-content{
+  min-height: 70vh;
+}
+
 .foodlist li {
   border: solid;
   border-color: var(--border-color);
@@ -141,7 +146,7 @@ header {
 }
 .footer {
   width: 90%;
-  height: 40vh;
+  height: 20vh;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
