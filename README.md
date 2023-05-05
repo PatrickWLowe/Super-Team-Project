@@ -51,5 +51,5 @@
 
 ## Link to the deployed website 
 
-### https://patrickwlowe.github.io/Work-Day-Scheduler/
+### https://patrickwlowe.github.io/Super-Team-Project/
 
