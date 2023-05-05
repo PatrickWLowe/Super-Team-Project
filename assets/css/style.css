@@ -21,6 +21,11 @@ body {
   height:99vh;
 }
 
+
+#main-content{
+  min-height: 62vh;
+}
+
 .foodlist li {
   border: solid;
   border-color: var(--border-color);
@@ -124,6 +129,33 @@ header {
   margin-top: 10px;
   margin-left: 10px;
   }
+.footer-container {
+    float:left;
+    bottom: 0;
+    width: 95%;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+    margin-right: 5%;
+    border-radius: 10px;
+    border: solid;
+    border-color: var(--border-color);
+    background-color: var(--section-color);
+    text-decoration: solid;
+    box-shadow:  10px 5px 5px var(--box-shadow);
+}
+.footer {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.footer-heading {
+  display: flex;
+  flex-direction: column;
+  margin-right: 4rem;
+}
 
 .card{
   background-color: var( --light-section);
