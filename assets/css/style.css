@@ -23,7 +23,7 @@ body {
 
 
 #main-content{
-  min-height: 70vh;
+  min-height: 62vh;
 }
 
 .foodlist li {
@@ -146,7 +146,6 @@ header {
 }
 .footer {
   width: 90%;
-  height: 20vh;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
