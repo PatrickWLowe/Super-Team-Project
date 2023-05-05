@@ -1,5 +1,6 @@
+![You_Are_What_You_EAT](https://user-images.githubusercontent.com/124648885/236369427-4c822f8f-17a8-486c-80bd-6fef2735d0a7.png)
 
-# You Are What You Eat
+
 ## Developers
 #### [Evan Carlson](https://github.com/EvanRC)
 #### [Patrick Lowe](https://github.com/PatrickWLowe)
